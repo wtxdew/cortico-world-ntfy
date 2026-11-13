@@ -1,0 +1,51 @@
+{
+  "name": "cortico-world-ntfy",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Cortico World: subscribe to ntfy topics and let the desktop pet tell you",
+  "license": "AGPL-3.0-or-later",
+  "author": "wtxdew",
+  "main": "./index.ts",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "cortico": {
+    "kind": "world",
+    "api": 6,
+    "icon": "icon.svg",
+    "webUiClient": "dist/webui.js",
+    "describe": "describe.json",
+    "displayName": "ntfy Notifications",
+    "tags": ["apps"],
+    "locales": {
+      "zh": {
+        "displayName": "ntfy 通知",
+        "description": "订阅 ntfy 话题：脚本、GitHub Actions、另一台电脑上的 Claude Code 等用一行 curl 发通知，桌宠告诉你。"
+      },
+      "en": {
+        "displayName": "ntfy Notifications",
+        "description": "Subscribe to ntfy topics: scripts, GitHub Actions or a coding agent on another computer send a notice with one curl, and the pet tells you."
+      }
+    }
+  },
+  "files": ["index.ts", "ntfy.ts", "topics.ts", "webui.ts", "text.ts", "icon.svg", "dist", "describe.json", "README.md", "LICENSE"],
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.4",
+    "cortico": "0.2.14",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.12"
+  },
+  "engines": { "node": ">=22" },
+  "repository": { "type": "git", "url": "git+https://github.com/wtxdew/cortico-world-ntfy.git" },
+  "homepage": "https://github.com/wtxdew/cortico-world-ntfy#readme",
+  "bugs": { "url": "https://github.com/wtxdew/cortico-world-ntfy/issues" },
+  "keywords": ["cortico-world", "cortico", "coopet", "coopanion", "ntfy", "notifications"],
+  "packageManager": "pnpm@11.28.6"
+}
