@@ -1,0 +1,91 @@
+/** 文字：中文和英文（其他语言用英文；繁体中文用中文）。后端和面板共用，导入它不会挂载面板。 */
+
+import type { Language } from 'cortico/core/language.ts';
+
+export const OFFICIAL_SERVER = 'https://ntfy.sh';
+
+const zh = {
+  title: 'ntfy 通知',
+  panel: '话题与连接',
+  lamp: 'ntfy 连接',
+  serverField: '服务器地址',
+  serverHint: `默认是官方的 ${OFFICIAL_SERVER}；留空也用官方。改了要点页面下方的「重启 World」才生效。`,
+  configTitle: '服务器',
+  topics: '话题',
+  topicsHint: '话题名 = 你起的片段 + 随机码。知道话题名的人都能往里发、也能订阅，所以随机码就是密码；不要发密码这类敏感内容。',
+  label: '片段',
+  labelHolder: '例如 build',
+  add: '添加话题',
+  generate: '重新生成',
+  copy: '复制',
+  copyCurl: '复制 curl',
+  test: '发一条测试',
+  remove: '删除',
+  confirmRemove: (t: string) => `删除话题 ${t}？之后发到这个话题的通知就收不到了。`,
+  routeLabel: '去向',
+  routes: { pet: '桌宠说', maibot: '交给麦麦', off: '不处理' } as Record<string, string>,
+  routeHint: '去向在 Coopet「Coopet 怎么处理它的通知」选「规则」时生效。',
+  empty: '还没有话题。起一个片段名，点「添加话题」。',
+  status: { idle: '没在连接', connecting: '连接中', open: '已连接', error: '连接断了，会自动重连' } as Record<string, string>,
+  statusLabel: '连接',
+  customToken: '访问 token（自订服务器用，可选）',
+  customTokenHint: '自订服务器开了访问控制时，填服务器给你的 token。官方服务器不用填。',
+  tokenSet: '已设置',
+  tokenSave: '保存',
+  tokenClear: '清除',
+  recent: '最近的通知',
+  recentEmpty: '还没收到通知。',
+  offline: '离线时收到',
+  testTitle: 'Coopet 测试',
+  testBody: '这是一条测试通知',
+  sent: '已发出，稍等桌宠说话',
+  curlBody: '构建完成',
+  limits: '官方服务器匿名使用有限额（大约每天几百条），个人通知够用。消息会经过 ntfy.sh 的服务器。',
+  eventText: (label: string) => `ntfy 话题「${label}」收到一条通知，请用 pet_say 简短转告用户。`,
+};
+
+type Text = typeof zh;
+
+const en: Text = {
+  title: 'ntfy notifications',
+  panel: 'Topics and connection',
+  lamp: 'ntfy connection',
+  serverField: 'Server',
+  serverHint: `The official ${OFFICIAL_SERVER} by default; empty also means the official one. Click Restart World below the page after changing it.`,
+  configTitle: 'Server',
+  topics: 'Topics',
+  topicsHint: 'A topic is your label plus a random code. Anyone who knows it can publish and subscribe, so the code is the password; do not send secrets.',
+  label: 'Label',
+  labelHolder: 'for example build',
+  add: 'Add topic',
+  generate: 'New code',
+  copy: 'Copy',
+  copyCurl: 'Copy curl',
+  test: 'Send a test',
+  remove: 'Remove',
+  confirmRemove: (t: string) => `Remove topic ${t}? Notices sent to it will no longer arrive.`,
+  routeLabel: 'Goes to',
+  routes: { pet: 'Pet says it', maibot: 'Hand to MaiBot', off: 'Ignore' },
+  routeHint: 'Used when Coopet\'s notification handling is set to Rules.',
+  empty: 'No topics yet. Give a label and click Add topic.',
+  status: { idle: 'Not connected', connecting: 'Connecting', open: 'Connected', error: 'Disconnected; reconnecting' },
+  statusLabel: 'Connection',
+  customToken: 'Access token (custom server, optional)',
+  customTokenHint: 'When your own server has access control, enter the token it gave you. The official server needs none.',
+  tokenSet: 'Set',
+  tokenSave: 'Save',
+  tokenClear: 'Clear',
+  recent: 'Recent notices',
+  recentEmpty: 'No notices yet.',
+  offline: 'Arrived while offline',
+  testTitle: 'Coopet test',
+  testBody: 'This is a test notice',
+  sent: 'Sent; the pet should speak shortly',
+  curlBody: 'Build finished',
+  limits: 'The official server has anonymous limits (a few hundred a day), plenty for personal notices. Messages pass through ntfy.sh.',
+  eventText: (label: string) => `ntfy topic "${label}" received a notice. Tell the user briefly with pet_say.`,
+};
+
+export function text(language: Language): Text {
+  return language === 'zh' || language === 'zh-Hant' ? zh : en;
+}
